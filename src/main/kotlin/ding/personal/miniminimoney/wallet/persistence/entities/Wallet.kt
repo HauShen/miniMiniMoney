@@ -1,4 +1,4 @@
-package ding.personal
+package ding.personal.miniminimoney.wallet.persistence.entities
 
 import java.time.Instant
 

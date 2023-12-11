@@ -1,4 +1,4 @@
-package ding.personal
+package ding.personal.miniminimoney.asset
 
 import java.time.Instant
 
