@@ -1,11 +1,17 @@
-package ding.personal.miniminimoney.transaction
+package ding.personal.miniminimoney.transaction.persistence.entities
 
 import ding.personal.miniminimoney.wallet.persistence.entities.Wallet
+import jakarta.persistence.*
 import java.time.LocalDate
 import java.time.Instant
 
+@Entity
+@Table(name = "wallet")
 data class Transaction (
-        val id: Long? = null,
+        @Id
+        val oid: Long? = null,
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name= "wallet_oid")
         val wallet: Wallet? = null,
         val desc: String? = null,
         val amount: Double = 0.0,

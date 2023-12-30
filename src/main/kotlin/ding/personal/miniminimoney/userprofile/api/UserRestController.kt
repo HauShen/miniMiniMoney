@@ -15,8 +15,8 @@ internal class UserRestController (
     fun getUser(
         @PathVariable("userId") userId: String
     ):String{
-        print("hi")
-        return "hi"
+        print(userId)
+        return userId
     }
 
 }

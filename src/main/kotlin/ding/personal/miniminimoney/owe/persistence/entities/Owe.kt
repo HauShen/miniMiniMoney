@@ -1,14 +1,16 @@
-package ding.personal.miniminimoney.owe
+package ding.personal.miniminimoney.owe.persistence.entities
 
 import ding.personal.miniminimoney.wallet.persistence.entities.Wallet
+import jakarta.persistence.*
 import java.time.Instant
 import java.time.LocalDate
 
 abstract class Owe {
-    abstract val id: Long?
+    abstract val oid: Long?
     abstract val wallet: Wallet?
     abstract val desc: String?
     abstract val amount: Double
+    abstract val amountLeft: Double
     abstract val name: String?
     abstract val monthlyDueDate: LocalDate?
     abstract val dateStarted: LocalDate?
@@ -18,11 +20,17 @@ abstract class Owe {
     abstract val updatedBy: String?
 }
 
+@Entity
+@Table(name = "debt")
 data class Debt(
-        override val id: Long?,
+        @Id
+        override val oid: Long?,
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name= "wallet_oid")
         override val wallet: Wallet?,
         override val desc: String?,
         override val amount: Double,
+        override val amountLeft: Double,
         override val name: String?,
         override val monthlyDueDate: LocalDate?,
         override val dateStarted: LocalDate?,
@@ -34,11 +42,18 @@ data class Debt(
 ): Owe(){
 
 }
+
+@Entity
+@Table(name = "loan")
 data class Loan(
-        override val id: Long?,
+        @Id
+        override val oid: Long?,
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name= "wallet_oid")
         override val wallet: Wallet?,
         override val desc: String?,
         override val amount: Double,
+        override val amountLeft: Double,
         override val name: String?,
         override val monthlyDueDate: LocalDate?,
         override val dateStarted: LocalDate?,
