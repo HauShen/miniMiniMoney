@@ -8,9 +8,12 @@ CREATE TABLE wallet
     updated_by      VARCHAR
 );
 
+
+
 CREATE TABLE user_profile
 (
     oid             BIGINT NOT NULL PRIMARY KEY,
+    user_id         VARCHAR NOT NULL,
     birthday        DATE,
     name            VARCHAR,
     wallet_id       BIGINT UNIQUE REFERENCES wallet (oid),
@@ -19,6 +22,9 @@ CREATE TABLE user_profile
     updated_at      TIMESTAMP,
     updated_by      VARCHAR
 );
+
+CREATE SEQUENCE s_user_profile START WITH 1 INCREMENT BY 1 CACHE 50 NO CYCLE;
+CREATE INDEX i_up_user_id ON user_profile (user_id);
 
 CREATE TABLE asset
 (
