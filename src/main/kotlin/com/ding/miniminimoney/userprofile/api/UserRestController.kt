@@ -4,6 +4,7 @@ import com.ding.miniminimoney.userprofile.rs.dto.UserRequestBody
 import com.ding.miniminimoney.userprofile.rs.dto.UserResponseBody
 import com.ding.miniminimoney.userprofile.services.UserService
 import com.ding.miniminimoney.lds.LdsService
+import com.ding.miniminimoney.userprofile.rs.dto.UserUpdateRequestBody
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -39,7 +40,20 @@ class UserRestController (
                 .body(userCreated)
     }
 
-    @PostMapping("/create")
+    @PutMapping("/update")
+    fun updateUser(
+            @RequestBody
+            updateuserRequestBody: UserUpdateRequestBody
+    ): ResponseEntity<UserResponseBody> {
+        val userCreated = userService.updateUser(updateuserRequestBody)
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .allow(HttpMethod.GET)
+                .body(userCreated)
+    }
+
+
+    @PostMapping("/createTest")
     fun uploadDoc(
             @RequestPart("file", required = false)
             file: MultipartFile

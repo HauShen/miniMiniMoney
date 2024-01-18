@@ -8,3 +8,8 @@ data class UserRequestBody (
         var name: String,
         var birthday: LocalDate? = null,
 )
+
+data class UserUpdateRequestBody (
+        var name: String,
+        var birthday: LocalDate? = null,
+)

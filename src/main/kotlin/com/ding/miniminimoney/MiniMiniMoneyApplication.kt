@@ -7,9 +7,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients
 import org.springframework.cloud.openfeign.FeignAutoConfiguration
 import org.springframework.scheduling.annotation.EnableScheduling
 
-SpringBootApplication
+@SpringBootApplication
 @EnableScheduling
-@EnableFeignClients(basePackageClasses = )
+@EnableFeignClients()
 @ImportAutoConfiguration(FeignAutoConfiguration::class)
 class MiniMiniMoneyApplication
 
