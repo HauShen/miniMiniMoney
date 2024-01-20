@@ -3,7 +3,7 @@ package com.ding.miniminimoney.wallet.persistence.entities
 import com.ding.miniminimoney.owe.persistence.entities.Debt
 import com.ding.miniminimoney.owe.persistence.entities.Loan
 import com.ding.miniminimoney.transaction.persistence.entities.Transaction
-import com.ding.miniminimoney.userprofile.asset.persistence.entities.Asset
+import com.ding.miniminimoney.asset.entities.Asset
 import com.ding.miniminimoney.userprofile.rs.dto.entities.UserProfile
 import jakarta.persistence.*
 import java.time.Instant

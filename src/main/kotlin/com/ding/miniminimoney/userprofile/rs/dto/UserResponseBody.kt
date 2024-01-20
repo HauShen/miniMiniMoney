@@ -2,10 +2,6 @@ package com.ding.miniminimoney.userprofile.rs.dto
 
 import com.ding.miniminimoney.userprofile.rs.dto.entities.UserProfile
 import com.ding.miniminimoney.wallet.persistence.entities.Wallet
-import jakarta.persistence.CascadeType
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.OneToOne
-import org.springframework.data.annotation.CreatedBy
 import java.time.Instant
 import java.time.LocalDate
 

@@ -12,7 +12,7 @@ class ApiConfig {
     @Bean
     fun webSecurityCustomizer(): WebSecurityCustomizer? {
         return WebSecurityCustomizer { web: WebSecurity ->
-            web.ignoring().requestMatchers("/users/**")
+            web.ignoring().requestMatchers("/user/**")
         }
     }
 }

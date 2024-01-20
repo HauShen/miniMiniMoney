@@ -13,3 +13,13 @@ data class UserUpdateRequestBody (
         var name: String,
         var birthday: LocalDate? = null,
 )
+
+data class AnimalRequestBody (
+        var name: String,
+        var amount: Int,
+)
+
+data class AnimalUpdateRequestBody (
+        var name: String,
+        var amount: Int,
+)

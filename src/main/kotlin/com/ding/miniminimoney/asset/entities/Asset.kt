@@ -1,4 +1,4 @@
-package com.ding.miniminimoney.userprofile.asset.persistence.entities
+package com.ding.miniminimoney.asset.entities
 
 import com.ding.miniminimoney.wallet.persistence.entities.Wallet
 import jakarta.persistence.Entity
