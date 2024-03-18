@@ -18,14 +18,13 @@ class UserRestController (
         private val userService: UserService,
         private val ldsService: LdsService,
 ){
-    val logger = LoggerFactory.getLogger(this::class.java)
 
     @GetMapping("/get/{userId}")
     fun getUser(
         @PathVariable("userId") userId: String
     ): ResponseEntity<UserResponseBody> {
-        val user = userService.getUserByUserId(userId)
-        return ResponseEntity.ok(user)
+        val user = userService.getUserByUserIdOrThrow(userId)
+        return ResponseEntity.ok(user.toUserResponseBody())
     }
 
 
@@ -41,24 +40,28 @@ class UserRestController (
                 .body(userCreated)
     }
 
-    @GetMapping("/speak")
-    fun speak(
-    ): ResponseEntity<String> {
-        logger.info("someone called")
-        return ResponseEntity.ok("HI")
-    }
-
-//    @PutMapping("/update")
-//    fun updateUser(
-//            @RequestBody
-//            updateuserRequestBody: UserUpdateRequestBody
-//    ): ResponseEntity<UserResponseBody> {
-//        val userCreated = userService.updateUser(updateuserRequestBody)
-//        return ResponseEntity
-//                .status(HttpStatus.CREATED)
-//                .allow(HttpMethod.GET)
-//                .body(userCreated)
+//    @GetMapping("/speak")
+//    fun speak(
+//    ): ResponseEntity<String> {
+//        logger.info("someone called")
+//        return ResponseEntity.ok("HI")
 //    }
+
+    @PutMapping("/update/{userId}")
+    fun updateUser(
+
+            @PathVariable("userId") userId: String,
+
+            @RequestBody
+            updateuserRequestBody: UserUpdateRequestBody
+
+    ): ResponseEntity<UserResponseBody> {
+        val userCreated = userService.updateUser(updateuserRequestBody, userId)
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .allow(HttpMethod.GET)
+                .body(userCreated)
+    }
 
     @PostMapping("/someString")
     fun detectLanguage(

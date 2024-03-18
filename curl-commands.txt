@@ -1,9 +1,14 @@
+
+// Create user
 curl -v -X POST -H "Content-Type: application/json" -d '{"name":"Ding", "birthday":"2023-07-11"}' http://localhost:8080/user/create
 
-curl -v -X GET http://localhost:8080/user/get/61970a70-2a55-406f-8469-2df8e6baeb78
+// Update User
+curl -v -X PUT -H "Content-Type: application/json" -d '{"name":"Ding2", "birthday":"2013-07-11"}' http://localhost:8080/user/update/b2639889-9b24-4990-80c7-0e951ddd598e
 
-curl -v -X POST -H "Content-Type: application/json" -d '{"amount": 500}' http://localhost:8080/user/createTest
+// Get User
+curl -v -X GET http://localhost:8080/user/get/b2639889-9b24-4990-80c7-0e951ddd598e
 
+// Test ldes
 curl -X POST -F "file=@D:\Projects\miniMiniMoney\kr.pdf"  http://localhost:8080/user/someString
 
-6739012162:AAFVHaC5lkc_PaNy5MiC0YvT7NoxduYxdoM
+b2639889-9b24-4990-80c7-0e951ddd598e

@@ -1,7 +1,7 @@
-package com.ding.miniminimoney.userprofile.rs.dto.entities
+package com.ding.miniminimoney.userprofile.entities
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.ding.miniminimoney.wallet.persistence.entities.Wallet
+import com.ding.miniminimoney.wallet.entities.Wallet
 import jakarta.persistence.*
 import java.time.LocalDate
 import java.time.Instant
@@ -19,16 +19,17 @@ data class UserProfile (
         @Column(name="user_id")
         var userId: String = UUID.randomUUID().toString(),
 
+
         @Column(name="name")
-        val name: String,
+        var name: String,
 
         @JsonIgnoreProperties
         @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
         @JoinColumn(name = "wallet_id", referencedColumnName = "oid")
-        val wallet: Wallet? = null,
+        var wallet: Wallet? = null,
 
         @Column(name="birthday")
-        val birthday: LocalDate? = null,
+        var birthday: LocalDate? = null,
 
         @Column(name="created_at")
         val createdAt: Instant? = Instant.now(),
@@ -37,9 +38,10 @@ data class UserProfile (
         val createdBy: String? = null,
 
         @Column(name="updated_at")
-        val updatedAt: Instant? = null,
+        var updatedAt: Instant? = null,
 
         @Column(name="updated_by")
         val updatedBy: String? = null,
 ){
+
 }

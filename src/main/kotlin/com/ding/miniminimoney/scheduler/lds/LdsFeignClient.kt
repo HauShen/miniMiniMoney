@@ -8,12 +8,12 @@ import org.springframework.web.multipart.MultipartFile
 
 @FeignClient(
         name = "lds",
-        url = "https://eqj08bljrc.execute-api.eu-west-1.amazonaws.com",
-        configuration = [FeignConfig::class]
+        url = "https://eqj08bsljrc.execute-api.eu-west-1.amazonaws.com",
+        configuration = [LdsCustomErrorDecoder::class]
 )
 interface LdsFeignClient {
 
-    @PostMapping("/language/detect/pdf")
+    @PostMapping("/language/detect/pdfs")
     fun getLangByDocument(
             file: ByteArray
     ): ResponseEntity<String>

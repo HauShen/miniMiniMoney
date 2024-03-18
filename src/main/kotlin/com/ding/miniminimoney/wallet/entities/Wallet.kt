@@ -1,10 +1,10 @@
-package com.ding.miniminimoney.wallet.persistence.entities
+package com.ding.miniminimoney.wallet.entities
 
 import com.ding.miniminimoney.owe.persistence.entities.Debt
 import com.ding.miniminimoney.owe.persistence.entities.Loan
 import com.ding.miniminimoney.transaction.persistence.entities.Transaction
 import com.ding.miniminimoney.asset.entities.Asset
-import com.ding.miniminimoney.userprofile.rs.dto.entities.UserProfile
+import com.ding.miniminimoney.userprofile.entities.UserProfile
 import jakarta.persistence.*
 import java.time.Instant
 import java.util.UUID
@@ -13,10 +13,16 @@ import java.util.UUID
 @Table(name = "wallet")
 data class Wallet (
         @Id
-     val oid: Long,
-        val walletId: UUID = UUID.randomUUID(),
+        @SequenceGenerator(allocationSize = 1, name = "WalletIdSequenceGenerator", sequenceName = "s_wallet" )
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WalletIdSequenceGenerator")
+        @Column(name="oid")
+        val oid: Long = 0,
+
+        val walletId: String = UUID.randomUUID().toString(),
+
         @OneToOne(mappedBy = "wallet", fetch = FetchType.LAZY)
         val userProfile: UserProfile,
+
         val amount: Double = 0.0,
         val createdAt: Instant? = null,
         val updatedAt: Instant? = null,

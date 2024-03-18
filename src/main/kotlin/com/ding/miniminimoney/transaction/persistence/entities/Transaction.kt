@@ -1,6 +1,6 @@
 package com.ding.miniminimoney.transaction.persistence.entities
 
-import com.ding.miniminimoney.wallet.persistence.entities.Wallet
+import com.ding.miniminimoney.wallet.entities.Wallet
 import jakarta.persistence.*
 import java.time.LocalDate
 import java.time.Instant

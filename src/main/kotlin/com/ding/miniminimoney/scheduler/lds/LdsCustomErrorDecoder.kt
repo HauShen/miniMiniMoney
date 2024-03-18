@@ -5,7 +5,7 @@ import feign.codec.ErrorDecoder
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ResponseStatus
 
-class CustomErrorDecoder : ErrorDecoder {
+class LdsCustomErrorDecoder : ErrorDecoder {
 
     override fun decode(methodKey: String, response: Response): Exception {
         if (response.status() == HttpStatus.NOT_FOUND.value()) {

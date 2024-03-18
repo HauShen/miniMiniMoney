@@ -13,8 +13,4 @@ class FeignConfig {
         return Client.Default(null, null)
     }
 
-    @Bean
-    fun errorDecoder(): ErrorDecoder {
-        return CustomErrorDecoder()
-    }
 }

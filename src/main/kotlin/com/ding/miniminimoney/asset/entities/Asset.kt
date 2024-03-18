@@ -1,6 +1,6 @@
 package com.ding.miniminimoney.asset.entities
 
-import com.ding.miniminimoney.wallet.persistence.entities.Wallet
+import com.ding.miniminimoney.wallet.entities.Wallet
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.Id

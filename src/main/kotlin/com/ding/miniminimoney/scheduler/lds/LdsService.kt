@@ -18,9 +18,13 @@ class LdsService(
             return response.body!!
 
         }
-        catch (e: CustomErrorDecoder.NotFoundException) {
+        catch (e: LdsCustomErrorDecoder.NotFoundException) {
+            logger.warn("lds configuration issue $e")
+            throw Exception("API resource cannot be found. Try to check the endpoint. $e")
+        }
+        catch (e: Throwable) {
             print ("lds not found")
-            logger.warn("lds configuration issue")
+            logger.warn("Unknowneeeeeeeeeee host exception $e")
             return "Hi"
         }
 

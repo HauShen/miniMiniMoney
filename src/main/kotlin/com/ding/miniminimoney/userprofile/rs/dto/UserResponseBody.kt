@@ -1,7 +1,7 @@
 package com.ding.miniminimoney.userprofile.rs.dto
 
-import com.ding.miniminimoney.userprofile.rs.dto.entities.UserProfile
-import com.ding.miniminimoney.wallet.persistence.entities.Wallet
+import com.ding.miniminimoney.userprofile.entities.UserProfile
+import com.ding.miniminimoney.wallet.entities.Wallet
 import java.time.Instant
 import java.time.LocalDate
 
