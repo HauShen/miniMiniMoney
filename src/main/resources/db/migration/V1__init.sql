@@ -1,6 +1,7 @@
 CREATE TABLE wallet
 (
     oid             BIGINT NOT NULL PRIMARY KEY,
+    wallet_key      VARCHAR NOT NULL,
     amount          DECIMAL,
     created_at      TIMESTAMP,
     created_by      VARCHAR,
@@ -8,15 +9,13 @@ CREATE TABLE wallet
     updated_by      VARCHAR
 );
 
-
-
 CREATE TABLE user_profile
 (
     oid             BIGINT NOT NULL PRIMARY KEY,
     user_id         VARCHAR NOT NULL,
     birthday        DATE,
     name            VARCHAR,
-    wallet_id       BIGINT UNIQUE REFERENCES wallet (oid),
+    wallet_oid      BIGINT UNIQUE REFERENCES wallet (oid),
     created_at      TIMESTAMP,
     created_by      VARCHAR,
     updated_at      TIMESTAMP,
@@ -25,6 +24,7 @@ CREATE TABLE user_profile
 
 CREATE SEQUENCE s_user_profile START WITH 1 INCREMENT BY 1 CACHE 50 NO CYCLE;
 CREATE INDEX i_up_user_id ON user_profile (user_id);
+CREATE SEQUENCE s_wallet START WITH 1 INCREMENT BY 1 CACHE 50 NO CYCLE;
 
 CREATE TABLE asset
 (
@@ -33,7 +33,7 @@ CREATE TABLE asset
     description     VARCHAR,
     amount          DECIMAL,
     type            VARCHAR,
-    wallet_id       BIGINT REFERENCES wallet (oid),
+    wallet_oid       BIGINT REFERENCES wallet (oid),
     created_at      TIMESTAMP,
     created_by      VARCHAR,
     updated_at      TIMESTAMP,
@@ -46,8 +46,8 @@ CREATE TABLE transaction_record
     name                   VARCHAR,
     description            VARCHAR,
     amount                 DECIMAL,
-    type                   VARCHAR,
-    wallet_id              BIGINT REFERENCES wallet (oid),
+    transaction_type       VARCHAR,
+    wallet_oid             BIGINT REFERENCES wallet (oid),
     date_of_transaction    DATE,
     created_at             TIMESTAMP,
     created_by             VARCHAR,
@@ -62,9 +62,10 @@ CREATE TABLE debt
     description            VARCHAR,
     total_amount           DECIMAL,
     status                 VARCHAR,
-    wallet_id              BIGINT REFERENCES wallet (oid),
+    monthly_amount         DECIMAL,
+    wallet_oid             BIGINT REFERENCES wallet (oid),
     monthly_due_date       DATE,
-    amountLeft             DECIMAL,
+    amount_left            DECIMAL,
     date_started           DATE,
     debtor                 VARCHAR,
     created_at             TIMESTAMP,
@@ -80,11 +81,11 @@ CREATE TABLE loan
     description            VARCHAR,
     total_amount           DECIMAL,
     status                 VARCHAR,
-    wallet_id              BIGINT REFERENCES wallet (oid),
+    wallet_oid             BIGINT REFERENCES wallet (oid),
     monthly_due_date       DATE,
     date_started           DATE,
-    monthlyAmount          DECIMAL,
-    amountLeft             DECIMAL,
+    monthly_amount         DECIMAL,
+    amount_left            DECIMAL,
     lender                 VARCHAR,
     created_at             TIMESTAMP,
     created_by             VARCHAR,

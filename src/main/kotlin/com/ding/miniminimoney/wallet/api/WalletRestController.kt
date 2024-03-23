@@ -1,4 +1,4 @@
-package com.ding.miniminimoney.wallet
+package com.ding.miniminimoney.wallet.api
 
 import com.ding.miniminimoney.userprofile.rs.dto.UserRequestBody
 import com.ding.miniminimoney.userprofile.rs.dto.UserResponseBody
@@ -25,7 +25,6 @@ class WalletRestController(
         val walletCreated = walletService.createAndAssignWallet(userId)
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .allow(HttpMethod.GET)
                 .body(walletCreated.toWalletResponseBody())
     }
 }

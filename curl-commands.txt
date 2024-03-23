@@ -2,13 +2,23 @@
 // Create user
 curl -v -X POST -H "Content-Type: application/json" -d '{"name":"Ding", "birthday":"2023-07-11"}' http://localhost:8080/user/create
 
+// Create wallet
+curl -v -X POST -H "Content-Type: application/json" http://localhost:8080/wallet/create/dbce5980-885b-46a6-b919-9ac1c596cc1a
+
 // Update User
 curl -v -X PUT -H "Content-Type: application/json" -d '{"name":"Ding2", "birthday":"2013-07-11"}' http://localhost:8080/user/update/b2639889-9b24-4990-80c7-0e951ddd598e
 
 // Get User
-curl -v -X GET http://localhost:8080/user/get/b2639889-9b24-4990-80c7-0e951ddd598e
+curl -v -X GET http://localhost:8080/user/get/dbce5980-885b-46a6-b919-9ac1c596cc1a
+
+//cREATE TRANSACTION
+curl -v -X POST -H "Content-Type: application/json" -d '{"name":"Pay bill to tm", "desc": "late payment last time", "date":"2023-07-11", "amount": 10.9921, "transactionType": "PAY_BILL"}' http://localhost:8080/transaction/createTransaction/dbce5980-885b-46a6-b919-9ac1c596cc1a
+
+//create asset
+curl -v -X POST -H "Content-Type: application/json" -d '{"name":"Cash", "desc": "cash earned from salary", "amount": 60.225, "type": "liquid"}' http://localhost:8080/asset/createAsset/dbce5980-885b-46a6-b919-9ac1c596cc1a
 
 // Test ldes
 curl -X POST -F "file=@D:\Projects\miniMiniMoney\kr.pdf"  http://localhost:8080/user/someString
 
-b2639889-9b24-4990-80c7-0e951ddd598e
+
+dbce5980-885b-46a6-b919-9ac1c596cc1a

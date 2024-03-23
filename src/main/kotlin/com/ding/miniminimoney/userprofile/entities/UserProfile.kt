@@ -2,7 +2,10 @@ package com.ding.miniminimoney.userprofile.entities
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.ding.miniminimoney.wallet.entities.Wallet
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
+import org.apache.commons.lang3.builder.ToStringExclude
 import java.time.LocalDate
 import java.time.Instant
 import java.util.UUID
@@ -19,13 +22,11 @@ data class UserProfile (
         @Column(name="user_id")
         var userId: String = UUID.randomUUID().toString(),
 
-
         @Column(name="name")
         var name: String,
 
-        @JsonIgnoreProperties
-        @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-        @JoinColumn(name = "wallet_id", referencedColumnName = "oid")
+        @OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
+        @JoinColumn(name= "wallet_oid")
         var wallet: Wallet? = null,
 
         @Column(name="birthday")

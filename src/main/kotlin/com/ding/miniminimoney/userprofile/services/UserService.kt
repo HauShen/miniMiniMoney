@@ -16,7 +16,7 @@ class UserService(
     val logger = LoggerFactory.getLogger(this::class.java)
 
     fun getUserByUserIdOrThrow (userId: String): UserProfile {
-        val user = userProfileRepository.findByUserId(userId)?: throw Exception("user not found").also {
+        val user = userProfileRepository.findByUserId(userId)?: throw UserNotFoundException("user not found").also {
             logger.warn("User with $userId not found.")
         }
         return user

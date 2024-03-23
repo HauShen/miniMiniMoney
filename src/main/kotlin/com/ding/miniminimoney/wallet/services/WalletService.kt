@@ -2,9 +2,8 @@ package com.ding.miniminimoney.wallet.services
 
 import com.ding.miniminimoney.userprofile.UserNotFoundException
 import com.ding.miniminimoney.userprofile.UserProfileRepository
+import com.ding.miniminimoney.userprofile.WalletCreationFailedException
 import com.ding.miniminimoney.userprofile.WalletNotCreatedException
-import com.ding.miniminimoney.userprofile.rs.dto.UserResponseBody
-import com.ding.miniminimoney.userprofile.rs.dto.toUserResponseBody
 import com.ding.miniminimoney.userprofile.services.UserService
 import com.ding.miniminimoney.wallet.WalletRepository
 import com.ding.miniminimoney.wallet.entities.Wallet
@@ -20,26 +19,30 @@ class WalletService(
 
     val logger = LoggerFactory.getLogger(this::class.java)
 
-//    fun getUserByUserIdOrThrow (userId: String): UserResponseBody {
-//        val wallet = userProfileRepository.findByUserId(userId)?: throw Exception("user not found")
-//        return user.toUserResponseBody()
-//
-//    }
 
-    fun createAndAssignWallet (userId: String ): Wallet {
+    fun createAndAssignWallet (userId: String): Wallet {
 
         try {
-          val userToBeAssigned =  userService.getUserByUserIdOrThrow(userId)
-            val newWallet = Wallet(userProfile = userToBeAssigned)
-            userToBeAssigned.wallet = newWallet
 
-            userRepository.save(userToBeAssigned)
-            return newWallet
+            // check if user exists
+            val userToBeAssigned =  userService.getUserByUserIdOrThrow(userId)
+
+            if (userToBeAssigned.wallet != null) {
+                logger.info("Wallet already exists for $userId.")
+                return userToBeAssigned.wallet!!
+            }
+            else {
+                var wallet = Wallet()
+                userToBeAssigned.wallet = wallet
+
+                userRepository.save(userToBeAssigned)
+                return wallet
+            }
         }
         catch (e: UserNotFoundException)
         {
             logger.warn("Something wrong. The user is not created properly. userId : $userId" )
-            throw WalletNotCreatedException("the wallet for $userId cannot be created")
+            throw WalletCreationFailedException("The wallet for $userId cannot be created because the user is not found.")
         }
     }
 }

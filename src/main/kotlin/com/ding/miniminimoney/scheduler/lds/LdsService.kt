@@ -24,7 +24,7 @@ class LdsService(
         }
         catch (e: Throwable) {
             print ("lds not found")
-            logger.warn("Unknowneeeeeeeeeee host exception $e")
+            logger.warn("Unknown host exception $e")
             return "Hi"
         }
 

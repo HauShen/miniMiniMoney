@@ -9,6 +9,12 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 @RestController
 @RequestMapping(
@@ -27,7 +33,6 @@ class UserRestController (
         return ResponseEntity.ok(user.toUserResponseBody())
     }
 
-
     @PostMapping("/create")
     fun createUser(
             @RequestBody
@@ -40,12 +45,11 @@ class UserRestController (
                 .body(userCreated)
     }
 
-//    @GetMapping("/speak")
-//    fun speak(
-//    ): ResponseEntity<String> {
-//        logger.info("someone called")
-//        return ResponseEntity.ok("HI")
-//    }
+    @GetMapping("/speak")
+    fun speak(
+    ): ResponseEntity<String> {
+        return ResponseEntity.ok(LocalDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + UUID.randomUUID().toString())
+    }
 
     @PutMapping("/update/{userId}")
     fun updateUser(
@@ -71,8 +75,4 @@ class UserRestController (
         val userCreated = ldsService.getDetectedLanguage(file.bytes)
         return ResponseEntity.ok(userCreated)
     }
-
-
-
-
 }
