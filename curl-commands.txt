@@ -17,6 +17,14 @@ curl -v -X POST -H "Content-Type: application/json" -d '{"name":"Pay bill to tm"
 //create asset
 curl -v -X POST -H "Content-Type: application/json" -d '{"name":"Cash", "desc": "cash earned from salary", "amount": 60.225, "type": "liquid"}' http://localhost:8080/asset/createAsset/dbce5980-885b-46a6-b919-9ac1c596cc1a
 
+//create loan
+curl -v -X POST -H "Content-Type: application/json" -d '{"name":"Mamak makan", "desc": "mamak after badminton", "totalAmount": 60.225, "monthlyDueDate": "2024-06-12", "lender": "Poon" }' http://localhost:8080/loan/createLoan/dbce5980-885b-46a6-b919-9ac1c596cc1a
+
+
+//create debt
+curl -v -X POST -H "Content-Type: application/json" -d '{"name":"Mamak makan", "desc": "mamak after badminton", "totalAmount": 610.225, "monthlyDueDate": "2024-06-12", "debtor": "Poon" }' http://localhost:8080/debt/createDebt/dbce5980-885b-46a6-b919-9ac1c596cc1a
+
+
 // Test ldes
 curl -X POST -F "file=@D:\Projects\miniMiniMoney\kr.pdf"  http://localhost:8080/user/someString
 

@@ -4,9 +4,11 @@ import com.ding.miniminimoney.userprofile.UserNotFoundException
 import com.ding.miniminimoney.userprofile.UserProfileRepository
 import com.ding.miniminimoney.userprofile.rs.dto.*
 import com.ding.miniminimoney.userprofile.entities.UserProfile
+import org.apache.catalina.User
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.time.Instant
+import java.util.*
 
 @Service
 class UserService(
@@ -16,21 +18,24 @@ class UserService(
     val logger = LoggerFactory.getLogger(this::class.java)
 
     fun getUserByUserIdOrThrow (userId: String): UserProfile {
-        val user = userProfileRepository.findByUserId(userId)?: throw UserNotFoundException("user not found").also {
+        val user = userProfileRepository.findByUserId(userId)?: throw UserNotFoundException("User not found/registered.").also {
             logger.warn("User with $userId not found.")
         }
         return user
 
     }
 
-    fun createUser (userRequestBody: UserRequestBody): UserResponseBody {
-        val userProfile = UserProfile(name = userRequestBody.name, birthday = userRequestBody.birthday)
+    fun createUser (userRequestBody: UserRequestBody): UserProfile {
+
+        val userId = userRequestBody.userId ?: UUID.randomUUID().toString()
+
+        val userProfile = UserProfile(userId = userId, name = userRequestBody.name, birthday = userRequestBody.birthday)
         logger.info("User is created with ${userProfile.userId} with name: ${userProfile.name} and birthday: ${userProfile.birthday} not found.")
         userProfileRepository.save(userProfile)
-        return userProfile.toUserResponseBody()
+        return userProfile
     }
 
-    fun updateUser (userUpdateRequestBody: UserUpdateRequestBody, userId: String): UserResponseBody {
+    fun updateUser (userUpdateRequestBody: UserUpdateRequestBody, userId: String): UserProfile {
         val currentUserProfile = userProfileRepository.findByUserId(userId)
 
         if (currentUserProfile == null){
@@ -41,7 +46,7 @@ class UserService(
         val newUserProfile = mergeChangesWithUserProfile(userUpdateRequestBody, currentUserProfile.copy())
 
         userProfileRepository.save(newUserProfile)
-        return currentUserProfile.toUserResponseBody()
+        return currentUserProfile
     }
 
     private fun mergeChangesWithUserProfile(userUpdateRequestBody: UserUpdateRequestBody, oldUserProfile: UserProfile): UserProfile {

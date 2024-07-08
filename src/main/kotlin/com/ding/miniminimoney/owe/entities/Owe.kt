@@ -11,7 +11,7 @@ abstract class Owe {
     abstract val wallet: Wallet?
     abstract val desc: String?
     abstract val totalAmount: Double
-    abstract val monthlyAmount: Double
+    abstract val monthlyAmount: Double?
     abstract val amountLeft: Double
     abstract val name: String?
     abstract val monthlyDueDate: LocalDate?
@@ -28,7 +28,7 @@ data class Debt(
         @SequenceGenerator(allocationSize = 1, name = "DebtIdSequenceGenerator", sequenceName = "s_debt" )
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DebtIdSequenceGenerator")
         @Id
-        override val oid: Long?,
+        override val oid: Long? = 0,
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name= "wallet_oid")
         @JsonIgnore
@@ -37,18 +37,21 @@ data class Debt(
         @Column (name = "description")
         override val desc: String?,
         override val totalAmount: Double,
-        override val monthlyAmount: Double,
+        override val monthlyAmount: Double? = 0.0,
         override val amountLeft: Double,
-        override val name: String?,
+        override val name: String,
         override val monthlyDueDate: LocalDate?,
         override val dateStarted: LocalDate?,
         override val createdAt: Instant?,
-        override val updatedAt: Instant?,
-        override val createdBy: String?,
-        override val updatedBy: String?,
+        override val updatedAt: Instant? = null,
+        override val createdBy: String? = null,
+        override val updatedBy: String? = null,
         val debtor: String,
 ): Owe(){
 
+    override fun toString(): String {
+        return "Debt()"
+    }
 }
 
 @Entity
@@ -57,7 +60,7 @@ data class Loan(
         @SequenceGenerator(allocationSize = 1, name = "LoanIdSequenceGenerator", sequenceName = "s_loan" )
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LoanIdSequenceGenerator")
         @Id
-        override val oid: Long?,
+        override val oid: Long? = 0,
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name= "wallet_oid")
         @JsonIgnore
@@ -66,16 +69,19 @@ data class Loan(
         @Column (name = "description")
         override val desc: String?,
         override val totalAmount: Double,
-        override val monthlyAmount: Double,
+        override val monthlyAmount: Double? = 0.0,
         override val amountLeft: Double,
-        override val name: String?,
+        override val name: String,
         override val monthlyDueDate: LocalDate?,
         override val dateStarted: LocalDate?,
         override val createdAt: Instant?,
-        override val updatedAt: Instant?,
-        override val createdBy: String?,
-        override val updatedBy: String?,
+        override val updatedAt: Instant? = null,
+        override val createdBy: String? = null,
+        override val updatedBy: String? = null,
         val lender: String,
 ): Owe(){
 
+    override fun toString(): String {
+        return "Loan()"
+    }
 }

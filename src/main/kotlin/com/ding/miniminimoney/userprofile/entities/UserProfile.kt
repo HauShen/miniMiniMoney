@@ -20,7 +20,7 @@ data class UserProfile (
         val oid: Long = 0,
 
         @Column(name="user_id")
-        var userId: String = UUID.randomUUID().toString(),
+        var userId: String,
 
         @Column(name="name")
         var name: String,

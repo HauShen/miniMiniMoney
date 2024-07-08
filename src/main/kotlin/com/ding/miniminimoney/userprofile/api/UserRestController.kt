@@ -42,7 +42,7 @@ class UserRestController (
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .allow(HttpMethod.GET)
-                .body(userCreated)
+                .body(userCreated.toUserResponseBody())
     }
 
     @GetMapping("/speak")
@@ -64,7 +64,7 @@ class UserRestController (
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .allow(HttpMethod.GET)
-                .body(userCreated)
+                .body(userCreated.toUserResponseBody())
     }
 
     @PostMapping("/someString")
