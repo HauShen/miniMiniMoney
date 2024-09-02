@@ -1,7 +1,6 @@
-package com.ding.miniminimoney.scheduler.lds
+package com.ding.miniminimoney.clients
 
 import feign.Client
-import feign.codec.ErrorDecoder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 

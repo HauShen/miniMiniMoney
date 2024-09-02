@@ -1,8 +1,7 @@
-package com.ding.miniminimoney.scheduler.lds
+package com.ding.miniminimoney.clients
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import org.springframework.web.multipart.MultipartFile
 
 @Service
 class LdsService(

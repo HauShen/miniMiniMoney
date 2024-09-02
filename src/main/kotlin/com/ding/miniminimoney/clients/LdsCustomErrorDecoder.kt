@@ -1,4 +1,4 @@
-package com.ding.miniminimoney.scheduler.lds
+package com.ding.miniminimoney.clients
 
 import feign.Response
 import feign.codec.ErrorDecoder
