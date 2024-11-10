@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: MiniMiniMoney
+  description: A financial system designed to keep track of money.
+  version: 0.1.0
+tags:
+  - name: UserProfile
+    description: Everything about User Profile
+  - name: Wallet
+    description: Everything about Wallet
+  - name: Transaction
+    description: Everything about Transaction
+paths:
+  /user/get/{userId}:
+    get:
+      tags:
+        - UserProfile
+      summary: Retrieve user.
+      description: Retrieve user by userId
+      operationId: getUser
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: ID of the user to retrieve
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '400':
+          description: Provided userId is invalid.
+        '404':
+          description: User not found.
+  /user/create:
+    post:
+      tags:
+        - UserProfile
+      summary: Create user.
+      description: Creete user
+      operationId: createUser
+      requestBody:
+        description: Create user body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRequestBody"
+
+      responses:
+        "201":
+          description: Created
+  /user/update/{userId}:
+    put:
+      tags:
+        - UserProfile
+      summary: Update user.
+      description: Update user
+      operationId: updateUser
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: ID of the user to retrieve
+      requestBody:
+        description: Update user body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserUpdateRequestBody"
+
+      responses:
+        '200':
+          description: Successful update
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserUpdateRequestBody"
+components:
+  schemas:
+    UserProfile:
+      required:
+        - userId
+        - name
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "userId-9083329"
+        name:
+          type: string
+          example: "Eron mask"
+        birthday:
+          type: string
+          format: date
+        wallet:
+          $ref: '#/components/schemas/Wallet'
+    UserRequestBody:
+      required:
+        - name
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "userId-9083329"
+        name:
+          type: string
+          example: "Eron Mask"
+        birthday:
+          type: string
+          format: date
+    UserUpdateRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Eron Mask"
+        birthday:
+          type: string
+          format: date
+    Wallet:
+      required:
+        - walletKey
+        - amount
+      type: object
+      properties:
+        walletKey:
+          type: string
+          example: wallet-sd9083329
+        amount:
+          type: number
+          format: double
+          example: 9999.99
+
