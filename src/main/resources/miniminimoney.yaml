@@ -31,7 +31,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                $ref: '#/components/schemas/UserResponseBody'
         '400':
           description: Provided userId is invalid.
         '404':
@@ -54,6 +54,10 @@ paths:
       responses:
         "201":
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseBody'
   /user/update/{userId}:
     put:
       tags:
@@ -82,7 +86,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserUpdateRequestBody"
+                $ref: "#/components/schemas/UserResponseBody"
 components:
   schemas:
     UserProfile:
@@ -125,6 +129,20 @@ components:
         birthday:
           type: string
           format: date
+    UserResponseBody:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "abc1234"
+        name:
+          type: string
+          example: "Eron Mask"
+        birthday:
+          type: string
+          format: date
+        wallet:
+          $ref: '#/components/schemas/Wallet'
     Wallet:
       required:
         - walletKey
@@ -138,4 +156,3 @@ components:
           type: number
           format: double
           example: 9999.99
-

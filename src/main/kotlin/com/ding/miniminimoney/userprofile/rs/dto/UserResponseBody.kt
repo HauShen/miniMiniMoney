@@ -1,5 +1,6 @@
 package com.ding.miniminimoney.userprofile.rs.dto
 
+import com.ding.miniminimoney.model.generated.UserResponseBody
 import com.ding.miniminimoney.userprofile.entities.UserProfile
 import com.ding.miniminimoney.wallet.entities.Wallet
 import com.ding.miniminimoney.wallet.entities.rs.dto.WalletResponseBody

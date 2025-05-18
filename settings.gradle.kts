@@ -13,4 +13,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "personal"
+rootProject.name = "miniMiniMoney"

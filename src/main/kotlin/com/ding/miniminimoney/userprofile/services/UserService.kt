@@ -1,8 +1,9 @@
 package com.ding.miniminimoney.userprofile.services
 
+import com.ding.miniminimoney.model.generated.UserRequestBody
+import com.ding.miniminimoney.model.generated.UserUpdateRequestBody
 import com.ding.miniminimoney.userprofile.UserNotFoundException
 import com.ding.miniminimoney.userprofile.UserProfileRepository
-import com.ding.miniminimoney.userprofile.rs.dto.*
 import com.ding.miniminimoney.userprofile.entities.UserProfile
 import org.apache.catalina.User
 import org.slf4j.LoggerFactory
@@ -30,7 +31,7 @@ class UserService(
         val userId = userRequestBody.userId ?: UUID.randomUUID().toString()
 
         val userProfile = UserProfile(userId = userId, name = userRequestBody.name, birthday = userRequestBody.birthday)
-        logger.info("User is created with ${userProfile.userId} with name: ${userProfile.name} and birthday: ${userProfile.birthday} not found.")
+        logger.info("User is created with ${userProfile.userId} with name: ${userProfile.name} and birthday: ${userProfile.birthday}.")
         userProfileRepository.save(userProfile)
         return userProfile
     }

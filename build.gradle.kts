@@ -81,7 +81,7 @@ tasks{
 
         configOptions.put("basePackage", packageName.get())
         configOptions.put("annotationLibrary", "none")
-        configOptions.put("deletegatePattern", "true")
+        configOptions.put("delegatePattern", "false")
         configOptions.put("documentationProvider", "none")
         configOptions.put("useSpringBoot3", "true")
         configOptions.put("sourceFolder", "kotlin")
@@ -90,7 +90,7 @@ tasks{
         configOptions.put("useSwaggerUI", "false")
         configOptions.put("modelMutable", "false")
         configOptions.put("modelNameSuffix", "DTO")
-        configOptions.put("interfaceOnly", "false")
+        configOptions.put("interfaceOnly", "true")
 
     }
 
