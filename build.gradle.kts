@@ -47,7 +47,7 @@ sourceSets {
     main {
         java {
             srcDir("src/main/kotlin")
-            srcDir("${layout.buildDirectory.get()}/generated/sources/openapi/miniminimoney/kotlin")
+//            srcDir("${layout.buildDirectory.get()}/generated/sources/openapi/miniminimoney/kotlin")
         }
     }
 }
@@ -60,43 +60,43 @@ flyway {
 
 tasks{
 
-    val generateOpenApiDocs = "generateOpenApiDocs"
-
-    register<GenerateTask>(generateOpenApiDocs){
-        group = "openapi"
-        description = "Generate OpenAPI documentation"
-        generatorName = "kotlin-spring"
-        packageName = "com.ding.miniminimoney"
-
-        inputSpec = "${projectDir}/src/main/resources/miniminimoney.yaml"
-        outputDir = "${layout.buildDirectory.get()}/generated/sources/openapi/miniminimoney"
-        apiPackage = "${packageName.get()}.api.generated"
-        modelPackage = "${packageName.get()}.model.generated"
-        apiNameSuffix.set("Api")
-        typeMappings.put("string-date", "Instant")
-        importMappings.put("Instant", "java.time.Instant")
-
-        globalProperties.put("apis", "")
-        globalProperties.put("models", "")
-
-        configOptions.put("basePackage", packageName.get())
-        configOptions.put("annotationLibrary", "none")
-        configOptions.put("delegatePattern", "false")
-        configOptions.put("documentationProvider", "none")
-        configOptions.put("useSpringBoot3", "true")
-        configOptions.put("sourceFolder", "kotlin")
-        configOptions.put("useTags", "true")
-        configOptions.put("useBeanValidation", "true")
-        configOptions.put("useSwaggerUI", "false")
-        configOptions.put("modelMutable", "false")
-        configOptions.put("modelNameSuffix", "DTO")
-        configOptions.put("interfaceOnly", "true")
-
-    }
+//    val generateOpenApiDocs = "generateOpenApiDocs"
+//
+//    register<GenerateTask>(generateOpenApiDocs){
+//        group = "openapi"
+//        description = "Generate OpenAPI documentation"
+//        generatorName = "kotlin-spring"
+//        packageName = "com.ding.miniminimoney"
+//
+//        inputSpec = "${projectDir}/src/main/resources/miniminimoney.yaml"
+//        outputDir = "${layout.buildDirectory.get()}/generated/sources/openapi/miniminimoney"
+//        apiPackage = "${packageName.get()}.api.generated"
+//        modelPackage = "${packageName.get()}.model.generated"
+//        apiNameSuffix.set("Api")
+//        typeMappings.put("string-date", "Instant")
+//        importMappings.put("Instant", "java.time.Instant")
+//
+//        globalProperties.put("apis", "")
+//        globalProperties.put("models", "")
+//
+//        configOptions.put("basePackage", packageName.get())
+//        configOptions.put("annotationLibrary", "none")
+//        configOptions.put("delegatePattern", "false")
+//        configOptions.put("documentationProvider", "none")
+//        configOptions.put("useSpringBoot3", "true")
+//        configOptions.put("sourceFolder", "kotlin")
+//        configOptions.put("useTags", "true")
+//        configOptions.put("useBeanValidation", "true")
+//        configOptions.put("useSwaggerUI", "false")
+//        configOptions.put("modelMutable", "false")
+//        configOptions.put("modelNameSuffix", "DTO")
+//        configOptions.put("interfaceOnly", "true")
+//
+//    }
 
 
     compileKotlin{
-        dependsOn(generateOpenApiDocs)
+//        dependsOn(generateOpenApiDocs)
 
         compilerOptions{
             jvmTarget.set(JvmTarget.JVM_21)

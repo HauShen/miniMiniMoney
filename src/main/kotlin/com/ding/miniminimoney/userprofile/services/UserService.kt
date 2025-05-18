@@ -1,10 +1,10 @@
 package com.ding.miniminimoney.userprofile.services
 
-import com.ding.miniminimoney.model.generated.UserRequestBody
-import com.ding.miniminimoney.model.generated.UserUpdateRequestBody
 import com.ding.miniminimoney.userprofile.UserNotFoundException
 import com.ding.miniminimoney.userprofile.UserProfileRepository
 import com.ding.miniminimoney.userprofile.entities.UserProfile
+import com.ding.miniminimoney.userprofile.rs.dto.UserRequestBody
+import com.ding.miniminimoney.userprofile.rs.dto.UserUpdateRequestBody
 import org.apache.catalina.User
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service

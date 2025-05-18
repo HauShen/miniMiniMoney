@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class OpenApiController {
 
-    @GetMapping("/openapi.yaml")
-    fun openapi(): Resource {
-        return ClassPathResource("miniminimoney.yaml")
-    }
+//    @GetMapping("/openapi.yaml")
+//    fun openapi(): Resource {
+//        return ClassPathResource("miniminimoney.yaml")
+//    }
 }
