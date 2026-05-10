@@ -145,7 +145,6 @@ Flyway is configured to load migrations from:
 src/main/resources/db/migration
 ```
 
-## Current Status
 
 This project is an actively evolving backend prototype for a personal finance system. It already models several core financial entities and API flows, and it can be extended further with authentication, reporting, validation improvements, and richer financial analytics.
 
